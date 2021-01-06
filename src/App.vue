@@ -1,7 +1,23 @@
 <template>
   <div id="app" class="contain">
-    <GamestateStart></GamestateStart>
-    <section>
+    <GamestateStart v-if="uiState === 'start'">
+      <h2>Which hooman do you want to be?</h2>
+      <p
+        v-for="option in characterChoices"
+        :key="option"
+        class="character-choices"
+      >
+        <input
+          v-model="characterInput"
+          :id="option"
+          :value="option"
+          type="radio"
+        />
+        <label :for="option">{{ option }}</label>
+      </p>
+    </GamestateStart>
+
+    <section v-else>
       <svg viewBox="0 -180 1628 1180" class="main">
         <defs>
           <clipPath id="bottom-clip">
@@ -73,8 +89,13 @@ export default {
   components: {
     GamestateStart,
   },
+  data() {
+    return {
+      characterInput: "",
+    };
+  },
   computed: {
-    ...mapState(["uiState", "questions"]),
+    ...mapState(["uiState", "questions", "characterChoices", "character"]),
   },
 };
 </script>
