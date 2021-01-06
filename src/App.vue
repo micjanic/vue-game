@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="contain">
     <GamestateStart v-if="uiState === 'start'">
-      <h2>Which hooman do you want to be?</h2>
+      <h2>Which do you want to be?</h2>
       <p
         v-for="option in characterChoices"
         :key="option"
@@ -15,6 +15,8 @@
         />
         <label :for="option">{{ option }}</label>
       </p>
+
+      <button @click="pickCharacter">Pick your character</button>
     </GamestateStart>
 
     <section v-else>
@@ -96,6 +98,12 @@ export default {
   },
   computed: {
     ...mapState(["uiState", "questions", "characterChoices", "character"]),
+  },
+  methods: {
+    pickCharacter() {
+      this.$store.commit("pickCharacter", this.characterInput);
+      this.$store.commit("updateUIState", "characterChosen");
+    },
   },
 };
 </script>
