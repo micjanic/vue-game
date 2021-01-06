@@ -42,6 +42,11 @@
           </clipPath>
         </defs>
 
+        <Friend />
+        <Score />
+
+        <component :is="character"></component>
+
         <text
           x="1000"
           y="930"
@@ -84,11 +89,24 @@
 </template>
 
 <script>
+import Artist from "@/components/Artist.vue";
+import Baker from "@/components/Baker.vue";
+import Friend from "@/components/Friend.vue";
+import Mechanic from "@/components/Mechanic.vue";
+import Score from "@/components/Score.vue";
+import Zombie from "@/components/Zombie.vue";
+
 import { mapState } from "vuex";
 import GamestateStart from "@/components/GamestateStart.vue";
 
 export default {
   components: {
+    Artist,
+    Baker,
+    Friend,
+    Mechanic,
+    Score,
+    Zombie,
     GamestateStart,
   },
   data() {
